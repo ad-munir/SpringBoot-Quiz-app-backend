@@ -1,28 +1,46 @@
 package com.quizlery.controller;
 
-import com.quizlery.model.Quiz;
-import com.quizlery.repository.QuizRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.Query;
+import com.quizlery.dto.QuizDto;
+import com.quizlery.service.QuizService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("quiz")
+@RequestMapping("/quiz")
+@RequiredArgsConstructor
 public class QuizController {
 
-    @Autowired
-    private QuizRepo quizRepo;
+    private final QuizService quizService;
 
     @GetMapping
-    public List<Quiz> findAll() {
-        return quizRepo.findAll();
+    public List<QuizDto> findAll() {
+        return quizService.findAll();
     }
 
     @PostMapping
-    public Quiz add(@RequestBody Quiz quiz){
-        return quizRepo.save(quiz);
+    public QuizDto createQuiz(@RequestBody QuizDto quiz){
+        return quizService.createQuiz(quiz);
+    }
+
+    @GetMapping("/id/{id}")
+    public QuizDto findQuizById(@PathVariable Integer id) {
+        return quizService.findQuizById(id);
+    }
+
+    @GetMapping("/title/{title}")
+    public QuizDto findQuizByTitle(@PathVariable String title) {
+        return quizService.findQuizByTitle(title);
+    }
+
+    @PutMapping("/id/{id}")
+    public QuizDto updateQuiz(@RequestBody QuizDto quizDto, @PathVariable Integer id) {
+        return quizService.updateQuiz(quizDto, id);
+    }
+
+    @DeleteMapping("/id/{id}")
+    public void deleteQuizById(@PathVariable Integer id) {
+        quizService.deleteQuizById(id);
     }
 }

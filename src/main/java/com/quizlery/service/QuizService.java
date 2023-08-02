@@ -7,7 +7,6 @@ import com.quizlery.service.Inter.QuizServiceInter;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +24,16 @@ public class QuizService implements QuizServiceInter {
     @Override
     public QuizDto findQuizById(Integer id) {
         Optional<Quiz> quizOptional = quizRepo.findById(id);
+        if (quizOptional.isPresent()){
+            QuizDto quizDto = modelMapper.map(quizOptional.get(), QuizDto.class);
+            return quizDto;
+        }
+        throw new  EntityNotFoundException("Not Found Quiz");
+    }
+
+    @Override
+    public QuizDto findQuizByTitle(String title) {
+        Optional<Quiz> quizOptional = quizRepo.findByTitle(title);
         if (quizOptional.isPresent()){
             QuizDto quizDto = modelMapper.map(quizOptional.get(), QuizDto.class);
             return quizDto;
@@ -52,17 +61,23 @@ public class QuizService implements QuizServiceInter {
     public QuizDto updateQuiz(QuizDto quizDto, Integer id) {
         Optional<Quiz> quizOptional = quizRepo.findById(id);
         if (quizOptional.isPresent()){
-            Quiz quiz = modelMapper.map(quizOptional.get(), Quiz.class);
+            Quiz exestingQuiz = quizOptional.get();;
+            modelMapper.map(quizDto, exestingQuiz);
+            Quiz updatedQuiz =quizRepo.save(exestingQuiz);
+            return modelMapper.map(updatedQuiz, QuizDto.class);
         }
         throw new  EntityNotFoundException("Not Found Quiz");
     }
 
     @Override
-    public void deleteQuiz(Integer id) {
+    public void deleteQuizById(Integer id) {
         Optional<Quiz> quizOptional = quizRepo.findById(id);
         if (quizOptional.isPresent()){
             quizRepo.deleteById(id);
+        }else{
+            throw new  EntityNotFoundException("Not Found Quiz");
         }
-        throw new  EntityNotFoundException("Not Found Quiz");
+
     }
+
 }
