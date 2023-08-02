@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "clients")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,14 @@ public class User {
     private String lastname;
 
     @Column(nullable = false)
+    private String username;
+
+    @Column(nullable = true)
+    private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "createdBy")
-    private List<Quiz> quizList;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    private List<QuizAttempt> attempts;
 }

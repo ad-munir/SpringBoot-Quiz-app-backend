@@ -5,25 +5,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "questions")
+@Table(name = "quiz_attempt")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class QuizAttempt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String text;
-
-    private Integer correctOption;
+    private Long timeTaken;
+    private Date date;
+    private Integer score;
 
     @ManyToOne
     private Quiz quiz;
 
-    @OneToMany(mappedBy = "question")
-    private List<Option> options;
+    @ManyToOne
+    private Client client;
+
 }

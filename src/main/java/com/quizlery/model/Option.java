@@ -19,8 +19,6 @@ public class Option {
     private Integer id;
 
     private String option;
-    //private List<String> options;
-    //private Integer correctOption;
 
     @ManyToOne
     private Question question;
