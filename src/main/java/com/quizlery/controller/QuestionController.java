@@ -2,7 +2,6 @@ package com.quizlery.controller;
 
 import com.quizlery.dto.QuestionDto;
 import com.quizlery.service.QuestionService;
-import com.quizlery.service.questionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class QuestionController {
     @GetMapping
     public List<QuestionDto> findAll() {
         return questionService.findAll();
-    }s
+    }
 
     @PostMapping
     public QuestionDto createQuestion(@RequestBody QuestionDto question){

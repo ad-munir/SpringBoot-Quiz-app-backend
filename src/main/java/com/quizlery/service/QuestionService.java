@@ -54,6 +54,7 @@ public class QuestionService implements QuestionServiceInter {
         Optional<Question> questionOptional = questionRepo.findById(id);
         if (questionOptional.isPresent()){
             Question question = modelMapper.map(questionDto, Question.class);
+            question.setId(id);
             Question updated = questionRepo.save(question);
             return modelMapper.map(updated, QuestionDto.class);
 
