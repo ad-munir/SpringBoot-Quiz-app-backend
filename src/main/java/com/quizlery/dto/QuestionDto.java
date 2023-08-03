@@ -1,15 +1,18 @@
 package com.quizlery.dto;
 
-import com.quizlery.model.Option;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class QuestionDto {
 
-    private String text;
-    private Integer correctOption;
-    private List<Option> options;
+    private String questionText;
+
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+
+    private String correctOption;
 }

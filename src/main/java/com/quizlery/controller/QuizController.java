@@ -43,4 +43,14 @@ public class QuizController {
     public void deleteQuizById(@PathVariable Integer id) {
         quizService.deleteQuizById(id);
     }
+
+    @GetMapping("/level/{level}")
+    public List<QuizDto> findByDifficultyLevel(@PathVariable String level) {
+        return quizService.findByDifficultyLevel(level);
+    }
+
+    @GetMapping("/categories")
+    public List<String> findAllCategories() {
+        return quizService.findAllCategories();
+    }
 }

@@ -77,7 +77,19 @@ public class QuizService implements QuizServiceInter {
         }else{
             throw new  EntityNotFoundException("Not Found Quiz");
         }
-
     }
 
+    @Override
+    public List<QuizDto> findByDifficultyLevel(String level) {
+        List<Quiz> quizList = quizRepo.findByDifficultyLevel(level);
+        List<QuizDto> quizDtoList = quizList.stream()
+                .map(quiz -> modelMapper.map(quiz, QuizDto.class))
+                .collect(Collectors.toList());
+        return quizDtoList;
+    }
+
+    @Override
+    public List<String> findAllCategories() {
+        return quizRepo.findAllCategories();
+    }
 }

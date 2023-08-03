@@ -20,16 +20,17 @@ public class Quiz {
 
     private String title;
 
+    private String category;
+
     private String description;
+
+    private String difficultyLevel;
 
     private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
-
-    @ManyToOne
-    private Category category;
 
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;

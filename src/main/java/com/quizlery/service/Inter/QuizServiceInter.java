@@ -1,8 +1,10 @@
 package com.quizlery.service.Inter;
 
 import com.quizlery.dto.QuizDto;
+import com.quizlery.model.Quiz;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface QuizServiceInter {
 
@@ -12,4 +14,8 @@ public interface QuizServiceInter {
     QuizDto createQuiz(QuizDto quizDto);
     QuizDto updateQuiz(QuizDto quizDto, Integer id);
     void deleteQuizById(Integer id);
+
+    List<QuizDto> findByDifficultyLevel(String difficultyLevel);
+
+    List<String> findAllCategories();
 }

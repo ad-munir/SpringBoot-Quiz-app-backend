@@ -17,13 +17,15 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String text;
+    private String questionText;
 
-    private Integer correctOption;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+
+    private String correctOption;
 
     @ManyToOne
     private Quiz quiz;
-
-    @OneToMany(mappedBy = "question")
-    private List<Option> options;
 }
