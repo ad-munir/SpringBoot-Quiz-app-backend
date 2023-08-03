@@ -1,10 +1,10 @@
 package com.quizlery.service;
 
 import com.quizlery.dto.QuizDto;
+import com.quizlery.exception.EntityNotFoundException;
 import com.quizlery.model.Quiz;
 import com.quizlery.repository.QuizRepo;
 import com.quizlery.service.Inter.QuizServiceInter;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class QuizService implements QuizServiceInter {
             QuizDto quizDto = modelMapper.map(quizOptional.get(), QuizDto.class);
             return quizDto;
         }
-        throw new  EntityNotFoundException("Not Found Quiz");
+        throw new EntityNotFoundException("Not Found Quiz");
     }
 
     @Override
