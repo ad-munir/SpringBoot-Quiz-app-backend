@@ -16,5 +16,7 @@ public class ClientDto {
 
     private String email;
 
+    private String password;
+
     private List<QuizAttempt> attempts;
 }

@@ -1,13 +1,10 @@
 package com.quizlery.service;
 
 import com.quizlery.dto.ClientDto;
-import com.quizlery.dto.QuizDto;
 import com.quizlery.exception.EntityNotFoundException;
 import com.quizlery.model.Client;
-import com.quizlery.model.Quiz;
 import com.quizlery.repository.ClientRepo;
 import com.quizlery.service.Inter.ClientServiceInter;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
