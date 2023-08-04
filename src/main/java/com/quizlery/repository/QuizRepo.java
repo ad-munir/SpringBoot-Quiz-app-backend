@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface QuizRepo extends JpaRepository<Quiz, Integer> {
     Optional<Quiz> findByTitle(String title);
-    @Query("SELECT DISTINCT q.category FROM Quiz q")
+    @Query(value = "SELECT DISTINCT q.category FROM Quizzes q", nativeQuery = true)
     List<String> findAllCategories();
 
     List<Quiz> findByDifficultyLevel(String difficultyLevel);

@@ -61,9 +61,9 @@ public class QuizService implements QuizServiceInter {
     public QuizDto updateQuiz(QuizDto quizDto, Integer id) {
         Optional<Quiz> quizOptional = quizRepo.findById(id);
         if (quizOptional.isPresent()){
-            Quiz exestingQuiz = quizOptional.get();;
-            modelMapper.map(quizDto, exestingQuiz);
-            Quiz updatedQuiz =quizRepo.save(exestingQuiz);
+            Quiz existingQuiz = quizOptional.get();;
+            modelMapper.map(quizDto, existingQuiz);
+            Quiz updatedQuiz =quizRepo.save(existingQuiz);
             return modelMapper.map(updatedQuiz, QuizDto.class);
         }
         throw new  EntityNotFoundException("Not Found Quiz");
